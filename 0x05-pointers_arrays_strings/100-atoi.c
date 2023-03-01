@@ -1,44 +1,47 @@
- #include "main.h"
+#include "main.h"
 
 /**
- * print_times_table - Prints the times table of the input,
- *                     starting with 0.
- * @n: The value of the times table to be printed.
+ * _atoi - converts a string to an integer
+ * @s: string to be converted
+ *
+ * Return: the int converted from the string
  */
-void print_times_table(int n)
+int _atoi(char *s)
 {
-	int num, mult, prod;
+	int i, d, n, len, f, digit;
 
-	if (n >= 0 && n <= 15)
+	i = 0;
+	d = 0;
+	n = 0;
+	len = 0;
+	f = 0;
+	digit = 0;
+
+	while (s[len] != '\0')
+		len++;
+
+	while (i < len && f == 0)
 	{
-		for (num = 0; num <= n; num++)
+		if (s[i] == '-')
+			++d;
+
+		if (s[i] >= '0' && s[i] <= '9')
 		{
-			_putchar('0');
-
-			for (mult = 1; mult <= n; mult++)
-			{
-				_putchar(',');
-				_putchar(' ');
-
-				prod = num * mult;
-
-				if (prod <= 99)
-					_putchar(' ');
-				if (prod <= 9)
-					_putchar(' ');
-
-				if (prod >= 100)
-				{
-					_putchar((prod / 100) + '0');
-					_putchar(((prod / 10)) % 10 + '0');
-				}
-				else if (prod <= 99 && prod >= 10)
-				{
-					_putchar((prod / 10) + '0');
-				}
-				_putchar((prod % 10) + '0');
-			}
-			_putchar('\n');
+			digit = s[i] - '0';
+			if (d % 2)
+				digit = -digit;
+			n = n * 10 + digit;
+			f = 1;
+			if (s[i + 1] < '0' || s[i + 1] > '9')
+				break;
+			f = 0;
 		}
+		i++;
 	}
+
+	if (f == 0)
+		return (0);
+
+	return (n);
 }
+
