@@ -1,5 +1,6 @@
 #include "holberton.h"
 #include <stdlib.h>
+#include "main.h"
 
 /**
  * *create_array - creates an array of chars, and initializes
@@ -8,7 +9,7 @@
  *  @size: number of bytes to allocate
  *
  *  Return: a pointer to the array or null if it fails
- */
+*/
 char *create_array(unsigned int size, char c)
 {
 	char *array = malloc(size);
