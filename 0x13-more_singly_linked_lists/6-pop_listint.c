@@ -11,20 +11,22 @@
  *Return: empty
  *
  */
+
 int pop_listint(listint_t **head)
 {
 	listint_t *temp;
-	int g;
+	int dt;
 
 	temp = (*head);
+
 	if (*head == NULL)
 	{
 		return (0);
 	}
-	temp = *temp->next;
-	g = (*head)->n;
+	temp = temp->next;
+	dt = (*head)->n;
 	free(*head);
 	*head = temp;
 
-	return (g);
+	return (dt);
 }
