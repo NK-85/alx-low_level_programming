@@ -19,26 +19,23 @@ listint_t *find_listint_loop(listint_t *head)
 
 	while (snail && hare && hare->next)
 	{
-		snail = tortoise->next;
+		snail = snail->next;
 
 		hare = hare->next->next;
 
 		if (snail == hare)
 		{
 			snail = head;
-
 			break;
 		}
 	}
 
 	if (!snail || !hare || !hare->next)
-
 		return (NULL);
 
 	while (snail != hare)
 	{
 		snail = snail->next;
-
 		hare = hare->next;
 	}
 
