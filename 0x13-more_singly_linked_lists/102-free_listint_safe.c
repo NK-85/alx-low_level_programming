@@ -29,7 +29,7 @@ listint_t **_ra(listint_t **list, size_t size, listint_t *new)
 		new[a] = list[a];
 	new[a] = new;
 	free(list);
-	return (newlist);
+	return (new);
 }
 
 /**
