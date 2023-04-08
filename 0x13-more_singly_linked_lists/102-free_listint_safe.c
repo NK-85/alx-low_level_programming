@@ -16,25 +16,19 @@
  */
 listint_t **_ra(listint_t **list, size_t size, listint_t *new)
 {
-	listint_t **newlist;
+	listint_t **new;
 	size_t a;
 
-	newlist = malloc(size * sizeof(listint_t *));
-
-	if (newlist == NULL)
+	new = malloc(size * sizeof(listint_t *));
+	if (new == NULL)
 	{
 		free(list);
 		exit(98);
 	}
-
 	for (a = 0; a < size - 1; a++)
-
-		newlist[a] = list[a];
-
-	newlist[a] = new;
-
+		new[a] = list[a];
+	new[a] = new;
 	free(list);
-
 	return (newlist);
 }
 
@@ -48,28 +42,30 @@ listint_t **_ra(listint_t **list, size_t size, listint_t *new)
  */
 size_t free_listint_safe(listint_t **head)
 {
-        size_t a, fig = 0;
+        size_t a, num = 0;
+	listint_t **list = NULL;
+	listint_t *next;
 
-        listint_t **list = NULL;
-
-        listint_t *next;
-
-        if (head == NULL || *head == NULL)
-
-                return (fig);
-
-        while (*head != NULL)
-        {
-                for (a = 0; a < fig; a++)
-                {
-                        if (*head == list[a])
-                        {
-                                *head = NULL;
-                                free(list);
-                                return (fig);
-                        }
-                }
-                fig++;
-                list = _ra(list, fig, *head);
-                next = (*head)->next;
+	if (head == NULL || *head == NULL)
+		return (num);
+	while (*head != NULL)
+	{
+		for (a = 0; a < num; a++)
+		{
+			if (*head == list[a])
+			{
+				*head = NULL;
+				free(list);
+				return (num);
+			}
+		}
+		num++;
+		list = _ra(list, num, *head);
+		next = (*head)->next;
+		free(*head);
+		*head = next;
+	}
+	free(list);
+	return (num);
 }
+
